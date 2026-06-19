@@ -57,28 +57,15 @@ class BlackScholes:
         return self.K * self.T * np.exp(-self.r * self.T) * norm.cdf(self.d2()) * 0.01
 
 
-        # newton-raphson - find volatility that makes model price match market price
-    def implied_volatility(self, market_price, tol=1e-6, max_iterations=100):
-        sigma = 0.2
-        
-        for i in range(max_iterations):
-            self.sigma = sigma
-            price_diff = self.call_price() - market_price
-            
-            if abs(price_diff) < tol:
-                return sigma
-            
-            sigma = sigma - price_diff / (self.vega() / 0.01)
-            
-            if sigma <= 0:
-                sigma = 0.001
-        
-        return sigma
+    
 
 
 # testing
 bs = BlackScholes(S=150, K=145, T=0.25, r=0.05, sigma=0.2)
-market_price = bs.call_price()
-print(bs.implied_volatility(market_price))
-print(bs.implied_volatility(11.00))
-print(bs.implied_volatility(8.00)) 
+print(bs.call_price())
+print(bs.put_price())
+print(bs.delta())
+print(bs.gamma())
+print(bs.theta())
+print(bs.vega())
+print(bs.rho())

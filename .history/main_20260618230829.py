@@ -80,5 +80,5 @@ class BlackScholes:
 bs = BlackScholes(S=150, K=145, T=0.25, r=0.05, sigma=0.2)
 market_price = bs.call_price()
 print(bs.implied_volatility(market_price))
-print(bs.implied_volatility(11.00))
-print(bs.implied_volatility(8.00)) 
+print(bs.implied_volatility(11.00))  # higher market price should imply higher vol
+print(bs.implied_volatility(8.00))   # lower market price should imply lower vol
